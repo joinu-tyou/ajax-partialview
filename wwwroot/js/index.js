@@ -11,3 +11,13 @@ $('#btnSearch').on('click', function (e) {
     };
     GetStudents(filters);
 });
+
+
+
+$('#btnSearch1').on('click', function (e) {
+    var filters = {
+        student: $('#student1').val(),
+        courseId: $('#course1').val()
+    };
+    GetStudents1(filters);
+});
