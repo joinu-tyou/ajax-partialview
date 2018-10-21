@@ -13,6 +13,7 @@ namespace ajaxPartial.Controllers
         }
 
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public IActionResult Students (StudentFilter filters)
         {
             List<Student> students = Student.GetStudents(filters);

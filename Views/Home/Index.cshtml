@@ -1,11 +1,15 @@
 ﻿@using ajaxPartial.Models;
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
 
 @model List<Student>
 
 <h1>Search Students</h1>
 <br />
 
-<form>
+<form method="post" asp-antiforgery="true" target="students">
+    "RequestVerificationToken":"@(Xsrf.GetAndStoreTokens(Context).RequestToken)"
+    @Html.AntiForgeryToken()
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="Student">Student</label>
@@ -25,6 +29,7 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <input id="btnSearch" type="button" class="btn btn-primary" value="Search" />
+            <button type='submit' name='action' value='save'>submit</button>
         </div>
     </div>
 </form>
@@ -32,3 +37,35 @@
 <div id="students"> </div>
 
 <script src="~/js/index.js"></script>
+
+<script>
+    var AppAjaxToken = "@(Xsrf.GetAndStoreTokens(Context).RequestToken)";
+</script>
+
+ 
+     <script >
+
+
+
+        function GetStudents(filters) {
+            $.ajax({
+                url: '/Home/Students',
+                headers: { "RequestVerificationToken":"@(Xsrf.GetAndStoreTokens(Context).RequestToken)" },
+                type: 'POST',
+                cache: false,
+                async: true,
+                dataType: "html",
+                data : filters
+            })
+                .done(function (result) {
+                    $('#students').html(result);
+                }).fail(function (xhr) {
+                    console.log('error : ' + xhr.status + ' - '
+                    + xhr.statusText + ' - ' + xhr.responseText);
+                });
+        }
+
+
+     </script>
+
+
