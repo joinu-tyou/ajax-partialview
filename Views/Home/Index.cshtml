@@ -28,7 +28,6 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <input id="btnSearch" type="button" class="btn btn-primary" value="Search" />
-            <button type='submit' name='action' value='save'>submit</button>
         </div>
     </div>
 </form>
@@ -85,12 +84,12 @@
                 dataType: "html",
                 data : filters
             })
-                .done(function (result) {
-                    $('#students').html(result);
-                }).fail(function (xhr) {
-                    console.log('error : ' + xhr.status + ' - '
-                    + xhr.statusText + ' - ' + xhr.responseText);
-                });
+            .done(function (result) {
+                $('#students').html(result);
+            }).fail(function (xhr) {
+                console.log('error : ' + xhr.status + ' - '
+                + xhr.statusText + ' - ' + xhr.responseText);
+            });
         }
 
 
@@ -105,12 +104,12 @@
                 dataType: "html",
                 data : filters
             })
-                .done(function (result) {
-                    $('#students1').html(result);
-                }).fail(function (xhr) {
-                    console.log('error : ' + xhr.status + ' - '
-                    + xhr.statusText + ' - ' + xhr.responseText);
-                });
+            .done(function (result) {
+                $('#students1').html(result);
+            }).fail(function (xhr) {
+                console.log('error : ' + xhr.status + ' - '
+                + xhr.statusText + ' - ' + xhr.responseText);
+            });
         }
 
      </script>
