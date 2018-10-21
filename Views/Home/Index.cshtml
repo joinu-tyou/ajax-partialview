@@ -69,49 +69,47 @@
     var AppAjaxToken = "@(Xsrf.GetAndStoreTokens(Context).RequestToken)";
 </script>
 
- 
-     <script >
+
+<script >
+
+    function GetStudents(filters) {
+        $.ajax({
+            url: '/Home/Students',
+            headers: { "RequestVerificationToken":"@(Xsrf.GetAndStoreTokens(Context).RequestToken)" },
+            type: 'POST',
+            cache: false,
+            async: true,
+            dataType: "html",
+            data : filters
+        })
+        .done(function (result) {
+            $('#students').html(result);
+        }).fail(function (xhr) {
+            console.log('error : ' + xhr.status + ' - '
+            + xhr.statusText + ' - ' + xhr.responseText);
+        });
+    }
 
 
 
-        function GetStudents(filters) {
-            $.ajax({
-                url: '/Home/Students',
-                headers: { "RequestVerificationToken":"@(Xsrf.GetAndStoreTokens(Context).RequestToken)" },
-                type: 'POST',
-                cache: false,
-                async: true,
-                dataType: "html",
-                data : filters
-            })
-            .done(function (result) {
-                $('#students').html(result);
-            }).fail(function (xhr) {
-                console.log('error : ' + xhr.status + ' - '
-                + xhr.statusText + ' - ' + xhr.responseText);
-            });
-        }
+    function GetStudents1(filters) {
+        $.ajax({
+            url: '/Home/Students',
+            headers: { "RequestVerificationToken":"@(Xsrf.GetAndStoreTokens(Context).RequestToken)" },
+            type: 'POST',
+            cache: false,
+            async: true,
+            dataType: "html",
+            data : filters
+        })
+        .done(function (result) {
+            $('#students1').html(result);
+        }).fail(function (xhr) {
+            console.log('error : ' + xhr.status + ' - '
+            + xhr.statusText + ' - ' + xhr.responseText);
+        });
+    }
 
-
-
-        function GetStudents1(filters) {
-            $.ajax({
-                url: '/Home/Students',
-                headers: { "RequestVerificationToken":"@(Xsrf.GetAndStoreTokens(Context).RequestToken)" },
-                type: 'POST',
-                cache: false,
-                async: true,
-                dataType: "html",
-                data : filters
-            })
-            .done(function (result) {
-                $('#students1').html(result);
-            }).fail(function (xhr) {
-                console.log('error : ' + xhr.status + ' - '
-                + xhr.statusText + ' - ' + xhr.responseText);
-            });
-        }
-
-     </script>
+</script>
 
 
